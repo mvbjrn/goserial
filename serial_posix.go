@@ -124,6 +124,17 @@ func openPort(name string, c *Config) (rwc io.ReadWriteCloser, err error) {
 		return nil, err
 	}
 
+	// Flow control
+	if c.RTSFlowControl {
+		st.c_cflag |= C.tcflag_t(C.CRTSCTS)
+	}
+
+	/*
+		if c.XONFlowControl {
+			st.c_cflag |= C.tcflag_t(C.IXON | C.IXOFF | C.IXANY)
+		}
+	*/
+
 	//fmt.Println("Tweaking", name)
 	r1, _, e := syscall.Syscall(syscall.SYS_FCNTL,
 		uintptr(f.Fd()),

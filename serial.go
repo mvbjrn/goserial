@@ -112,9 +112,9 @@ type Config struct {
 	Parity   ParityMode
 	StopBits StopBits
 
-	// RTSFlowControl bool
-	// DTRFlowControl bool
-	// XONFlowControl bool
+	RTSFlowControl bool
+	//DTRFlowControl bool
+	//XONFlowControl bool
 
 	CRLFTranslate bool // Ignored on Windows.
 	// TimeoutStuff int
